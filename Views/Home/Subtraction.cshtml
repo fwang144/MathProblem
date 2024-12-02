@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Subtraction Section";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Subtraction Section.</h1>
+    <p>@TempData["prob1"] - @TempData["prob2"]</p>
+
+    <form asp-controller="Home" asp-action="Answer">
+        <input type="hidden" name="mode" value="subtract">
+        <input type="number" name="answer">
+        <input type="submit" value="Submit Answer">
+    </form> 
+
+    <h3>@TempData["Message"]</h3>
+    <h3>@TempData["Help"]</h3>

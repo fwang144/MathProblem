@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Solving Math Game.</h1>
+    
+    <p>The odject of the game is to solve math.</p>
+
+    <form asp-controller="Home" asp-action="Addition">
+        <button class="btn btn-default">Addition</button>
+    </form>
+
+    <form asp-controller="Home" asp-action="Subtraction">
+        <button class="btn btn-default">Subtraction</button>
+    </form>
+
+    <p>Right: @TempData["right"]  Wrong: @TempData["wrong"]</p>
+
+
+</div>
