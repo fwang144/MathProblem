@@ -95,3 +95,4 @@ C:\Users\fwang\Documents\CodingDojo\DotNet_stack\MathProblem\obj\Debug\net9.0\re
 C:\Users\fwang\Documents\CodingDojo\DotNet_stack\MathProblem\obj\Debug\net9.0\MathProblem.pdb
 C:\Users\fwang\Documents\CodingDojo\DotNet_stack\MathProblem\obj\Debug\net9.0\MathProblem.genruntimeconfig.cache
 C:\Users\fwang\Documents\CodingDojo\DotNet_stack\MathProblem\obj\Debug\net9.0\ref\MathProblem.dll
+C:\Users\fwang\Documents\CodingDojo\DotNet_stack\MathProblem\obj\Debug\net9.0\MathProblem.sourcelink.json

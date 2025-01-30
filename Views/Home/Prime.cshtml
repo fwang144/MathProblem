@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Prime Section";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Prime Section.</h1>
+    <p>Is @TempData["prob1"] is Prime number?</p>
+
+    <form asp-controller="Home" asp-action="Answer">
+        <input type="hidden" name="mode" value="prime">
+        <input type="hidden" name="confirm" value="true">
+        <input type="submit" value="True">
+    </form>
+
+    <form asp-controller="Home" asp-action="Answer">
+        <input type="hidden" name="mode" value="prime">
+        <input type="hidden" name="confirm" value="false">
+        <input type="submit" value="False">
+    </form> 
+
+    <h3>@TempData["Message"]</h3>
+    <h3>@TempData["Help"]</h3>
+
+</div>
