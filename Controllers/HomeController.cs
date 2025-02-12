@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MathProblem.Models;
+using Prime.Services;
 using System.Security.Cryptography.X509Certificates;
 
 
@@ -82,7 +83,8 @@ public class HomeController : Controller
     {
         Random rand = new Random();
         int prob1 = rand.Next(2,100);
-        bool result = isPrime(prob1);
+        var prime = new PrimeService();
+        bool result = prime.IsPrime(prob1);
 
         if (result)
         {
@@ -207,18 +209,6 @@ public class HomeController : Controller
 
     }
 
-    public bool isPrime(int answer)
-    {
-        for (int i = 2; i < answer/2; i++)
-        {
-            if (answer%i == 0)
-            {
-                return false;
-            }
-
-        }
-        return true;
-    }
 
     public IActionResult Privacy()
     {
