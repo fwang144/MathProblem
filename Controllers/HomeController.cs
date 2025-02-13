@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MathProblem.Models;
-using Prime.Services;
 using System.Security.Cryptography.X509Certificates;
 
 
@@ -18,19 +17,19 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        
+
         if (HttpContext.Session.GetInt32("right") == null)
-        {        
-    
+        {
+
             HttpContext.Session.SetInt32("right", 0);
             HttpContext.Session.SetInt32("wrong", 0);
 
         }
 
-        TempData["right"] = (int) HttpContext.Session.GetInt32("right");
-        TempData["wrong"] = (int) HttpContext.Session.GetInt32("wrong");
+        TempData["right"] = (int)HttpContext.Session.GetInt32("right");
+        TempData["wrong"] = (int)HttpContext.Session.GetInt32("wrong");
 
-        
+
         return View();
     }
 
@@ -41,11 +40,11 @@ public class HomeController : Controller
         int prob1 = rand.Next(10);
         int prob2 = rand.Next(10);
 
-  
+
         TempData["prob1"] = prob1;
-        HttpContext.Session.SetInt32("prob1" , prob1);
+        HttpContext.Session.SetInt32("prob1", prob1);
         TempData["prob2"] = prob2;
-        HttpContext.Session.SetInt32("prob2" , prob2);
+        HttpContext.Session.SetInt32("prob2", prob2);
         return View();
     }
 
@@ -56,11 +55,11 @@ public class HomeController : Controller
         int prob1 = rand.Next(10);
         int prob2 = rand.Next(10);
 
-  
+
         TempData["prob1"] = prob1;
-        HttpContext.Session.SetInt32("prob1" , prob1);
+        HttpContext.Session.SetInt32("prob1", prob1);
         TempData["prob2"] = prob2;
-        HttpContext.Session.SetInt32("prob2" , prob2);
+        HttpContext.Session.SetInt32("prob2", prob2);
         return View();
     }
 
@@ -71,9 +70,9 @@ public class HomeController : Controller
         int prob2 = rand.Next(10);
 
         TempData["prob1"] = prob1;
-        HttpContext.Session.SetInt32("prob1" , prob1);
+        HttpContext.Session.SetInt32("prob1", prob1);
         TempData["prob2"] = prob2;
-        HttpContext.Session.SetInt32("prob2" , prob2);
+        HttpContext.Session.SetInt32("prob2", prob2);
         return View();
 
 
@@ -82,9 +81,9 @@ public class HomeController : Controller
     public IActionResult Prime()
     {
         Random rand = new Random();
-        int prob1 = rand.Next(2,100);
-        var prime = new PrimeService();
-        bool result = prime.IsPrime(prob1);
+        int prob1 = rand.Next(2, 100);
+
+        bool result = isPrime(prob1);
 
         if (result)
         {
@@ -97,13 +96,25 @@ public class HomeController : Controller
         }
 
         TempData["prob1"] = prob1;
-        HttpContext.Session.SetInt32("prob1" , prob1);
-    
+        HttpContext.Session.SetInt32("prob1", prob1);
+
         return View();
 
 
     }
-    
+
+    public bool isPrime(int answer)
+    {
+        for (int i = 2; i < answer / 2; i++)
+        {
+            if (answer % i == 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     [HttpPost]
     public IActionResult answer(int answer, string mode, string confirm)
@@ -117,13 +128,14 @@ public class HomeController : Controller
                 wrong++;
                 HttpContext.Session.SetInt32("wrong", wrong);
 
-                        TempData["prob1"] = (int)HttpContext.Session.GetInt32("prob1");
-                        TempData["prob2"] = (int)HttpContext.Session.GetInt32("prob2");
+                TempData["prob1"] = (int)HttpContext.Session.GetInt32("prob1");
+                TempData["prob2"] = (int)HttpContext.Session.GetInt32("prob2");
 
                 return View("Addition");
 
             }
-            else{
+            else
+            {
 
                 int right = (int)HttpContext.Session.GetInt32("right");
                 right++;
@@ -141,13 +153,14 @@ public class HomeController : Controller
                 wrong++;
                 HttpContext.Session.SetInt32("wrong", wrong);
 
-                        TempData["prob1"] = (int)HttpContext.Session.GetInt32("prob1");
-                        TempData["prob2"] = (int)HttpContext.Session.GetInt32("prob2");
+                TempData["prob1"] = (int)HttpContext.Session.GetInt32("prob1");
+                TempData["prob2"] = (int)HttpContext.Session.GetInt32("prob2");
 
                 return View("Subtraction");
 
             }
-            else{
+            else
+            {
 
                 int right = (int)HttpContext.Session.GetInt32("right");
                 right++;
@@ -165,8 +178,8 @@ public class HomeController : Controller
                 wrong++;
                 HttpContext.Session.SetInt32("wrong", wrong);
 
-                        TempData["prob1"] = (int)HttpContext.Session.GetInt32("prob1");
-                        TempData["prob2"] = (int)HttpContext.Session.GetInt32("prob2");
+                TempData["prob1"] = (int)HttpContext.Session.GetInt32("prob1");
+                TempData["prob2"] = (int)HttpContext.Session.GetInt32("prob2");
 
                 return View("Multiply");
 
@@ -191,11 +204,12 @@ public class HomeController : Controller
                 wrong++;
                 HttpContext.Session.SetInt32("wrong", wrong);
 
-                        TempData["prob1"] = (int)HttpContext.Session.GetInt32("prob1");
+                TempData["prob1"] = (int)HttpContext.Session.GetInt32("prob1");
 
                 return View("Prime");
             }
-            else{
+            else
+            {
 
                 int right = (int)HttpContext.Session.GetInt32("right");
                 right++;
@@ -203,7 +217,7 @@ public class HomeController : Controller
 
 
             }
-    }
+        }
 
         return Redirect("/");
 
